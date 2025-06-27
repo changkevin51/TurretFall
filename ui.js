@@ -391,7 +391,9 @@ function updateTurretHoverInfo() {
 
 function getTurretBeingHovered() {
     for (var turret of turrets) {
-        if (dist(mouseX, mouseY, turret.x, turret.y) < turret.size/2 && turret.placed) {
+        const distanceSq = (mouseX - turret.x) ** 2 + (mouseY - turret.y) ** 2;
+        const radiusSq = (turret.size / 2) ** 2;
+        if (distanceSq < radiusSq && turret.placed) {
             return turret;
         }
     }
